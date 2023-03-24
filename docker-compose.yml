@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  mock:
+    image: anurajkumar/mock-service
+    container_name: mock-service
+    ports:
+      - 8081:8081
+  flight:
+    image: anurajkumar/flight-service
+    container_name: flight-service
+    ports:
+      - 8082:8082
+    depends_on:
+      - mock
+    environment:
+      wait_hosts: mock:8081
